@@ -2,9 +2,6 @@ package bankapp;
 
 import java.util.Scanner;
 
-/**
- * Имплементация интерфейса Input, которая игнорирует проблемы неправильного ввода пользователем.
- */
 
 public class ConsoleInput implements Input {
 
@@ -21,9 +18,6 @@ public class ConsoleInput implements Input {
         return Integer.parseInt(askStr(question));
     }
 
-    /**
-     * Метод необходимо реализовать.
-     */
     @Override
     public long askLong(String question) {
         return 0;

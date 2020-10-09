@@ -26,14 +26,6 @@ public class StartUI {
     }
 
 
-    /**
-     * Метод должен работать пока пользователь не авторизуется (пока отключил цикл!).
-     *
-     * @param bankService BankService объект.
-     * @param input Input объект.
-     * @return возвращает реквизиты аккаунта, под которым авторизовался пользователь.
-     *         Получайте их вызывом метода getRequisiteIfPresent, класса BankService.
-     */
     private String authorization(BankService bankService, Input input) {
         String rsl = null;
         boolean authComplete = true;
@@ -51,22 +43,22 @@ public class StartUI {
 
     /**
      * Печатается меню пользователя (только печатается, общения с пользователем нету).
-     *
-     * @param actions массив с действиями.
      */
     private void showMenu(UserAction[] actions) {
         System.out.println("Menu.");
-        for (int index = 0; index < actions.length; index++) {
+        for (int index = 1; index < actions.length; index++) {
             System.out.println(index + ". " + actions[index].getTitle());
         }
     }
 
     public static void main(String[] args) {
         BankService bankService = new BankService();
-        // здесь создадите несколько аккаунтов на проверку
-        // данные осмысленно заполните, не просто пустые строки
-        bankService.addAccount(new BankAccount("", "", ""));
-        // Ещё аккаунты
+
+        // здесь несколько аккаунтов на проверку
+        bankService.addAccount(new BankAccount("Sergey", "1234", "012345"));
+        bankService.addAccount(new BankAccount("Ivan", "1111", "111111"));
+        bankService.addAccount(new BankAccount("Oleg", "qwerty", "222222"));
+        bankService.addAccount(new BankAccount("Sergey", "0123", "001122"));
 
         // В массиве хранятся объекты, которые представляют наши действия.
         UserAction[] actions = {
