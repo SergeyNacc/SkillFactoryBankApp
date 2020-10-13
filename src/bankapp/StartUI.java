@@ -29,24 +29,34 @@ public class StartUI {
     private String authorization(BankService bankService, Input input) {
         String rsl = null;
         boolean authComplete = true;
-        while (authComplete) { // цикл отключён!!!
-            /*
-             * Запрашиваете у пользователя логин, пароль пока он не пройдёт авторизацию.
-             * Авторизация пройдена при условие что в BankService есть пользователь с
-             * данным логином и паролем (работайте только с теми пользователями что есть).
-             */
+
+        while (!authComplete) { // отключил
+
             String login = input.askStr("Ваш логин: ");
             String password = input.askStr("Ваш password: ");
+            BankAccount bankAccount = new BankAccount("", password, login);
+
+            /*
+            * не могу разобраться как сделать проверку
+            * есть ли вводимый аккаунт с уже имеющимся
+            if (){
+                authComplete = true;
+            } else {
+                authComplete = false;
+            }
+
+             */
         }
         return rsl;
     }
 
+
     /**
-     * Печатается меню пользователя (только печатается, общения с пользователем нету).
+     * Печатается меню пользователя (только печатается, общения с пользователем нет).
      */
     private void showMenu(UserAction[] actions) {
         System.out.println("Menu.");
-        for (int index = 1; index < actions.length; index++) {
+        for (int index = 0; index < actions.length; index++) {
             System.out.println(index + ". " + actions[index].getTitle());
         }
     }
@@ -67,8 +77,9 @@ public class StartUI {
                 new TransferToAction(),
                 new Exit()
         };
-        // Наш Input можно менять на нужную реализацию (ValidateInput доделайте)
+        // Наш Input можно менять на нужную реализацию (ValidateInput)
         Input input = new ValidateInput();
+
         // Запускаем наш UI передавая аргументами банковский сервис, экшены и Input.
         new StartUI().init(bankService, actions, input);
     }
